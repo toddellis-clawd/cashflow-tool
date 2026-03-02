@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Plus, Trash2, ArrowUpCircle, Pencil, Check } from 'lucide-react'
+import { Plus, Trash2, ArrowUpCircle, Pencil, Check, Upload } from 'lucide-react'
 import { getData, setData, generateId } from '../lib/storage'
 import { formatCurrency } from '../lib/forecastEngine'
+import CSVImport from '../components/CSVImport'
 
 export default function Payables() {
   const [items, setItems] = useState(() => getData('payables', []))
   const [showForm, setShowForm] = useState(false)
+  const [showImport, setShowImport] = useState(false)
   const [editId, setEditId] = useState(null)
   const [form, setForm] = useState({
     vendor: '', invoiceNumber: '', invoiceDate: '', amount: '', payDate: '', overrideDate: '', status: 'open'
@@ -31,6 +33,11 @@ export default function Payables() {
   const totalOpen = openItems.reduce((s, i) => s + i.amount, 0)
 
   return (
+    <>
+    {showImport && <CSVImport type="payables" onClose={() => setShowImport(false)} onImport={(imported) => {
+      const newItems = imported.map(item => ({ id: generateId(), vendor: item.vendor, description: item.description, amount: item.amount, payDate: item.payDate, status: 'open', notes: '' }));
+      setItems(prev => [...prev, ...newItems])
+    }} />}
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -42,6 +49,9 @@ export default function Payables() {
         <button onClick={() => { resetForm(); setShowForm(true) }}
           className="bg-[#3b82f6] hover:bg-[#2563eb] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium">
           <Plus size={16} /> Add Bill
+          </button>
+          <button onClick={() => setShowImport(true)} className="flex items-center gap-2 px-4 py-2 text-sm bg-[#1e293b] border border-[#334155] text-[#94a3b8] hover:text-white rounded-lg hover:bg-[#334155] transition-colors">
+            <Upload size={16} /> Import CSV
         </button>
       </div>
 
@@ -138,5 +148,6 @@ export default function Payables() {
         </table>
       </div>
     </div>
+    </>
   )
 }
