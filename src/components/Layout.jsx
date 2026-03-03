@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Repeat, ArrowDownCircle, ArrowUpCircle, TrendingUp, Settings } from 'lucide-react'
+import { LayoutDashboard, Repeat, ArrowDownCircle, ArrowUpCircle, TrendingUp, Settings, Zap, Target } from 'lucide-react'
 import { useCompany } from '../hooks/useCompany'
 
 const navItems = [
@@ -9,6 +9,8 @@ const navItems = [
   { to: '/recurring', icon: Repeat, label: 'Recurring Expenses' },
   { to: '/receivables', icon: ArrowDownCircle, label: 'Receivables (AR)' },
   { to: '/payables', icon: ArrowUpCircle, label: 'Payables (AP)' },
+  { to: '/onetime', icon: Zap, label: 'One-Time Expenses' },
+  { to: '/prohibitors', icon: Target, label: 'Growth Prohibitors' },
   { to: '/setup', icon: Settings, label: 'Setup' },
 ]
 
