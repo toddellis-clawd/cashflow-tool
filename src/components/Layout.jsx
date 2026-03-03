@@ -5,6 +5,7 @@ import { useCompany } from '../hooks/useCompany'
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/forecast', icon: TrendingUp, label: 'Cash Forecast' },
+  { to: '/revenue', icon: TrendingUp, label: 'Revenue Forecast' },
   { to: '/recurring', icon: Repeat, label: 'Recurring Expenses' },
   { to: '/receivables', icon: ArrowDownCircle, label: 'Receivables (AR)' },
   { to: '/payables', icon: ArrowUpCircle, label: 'Payables (AP)' },

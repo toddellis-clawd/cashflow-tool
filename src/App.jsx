@@ -7,6 +7,7 @@ import Receivables from './pages/Receivables'
 import Payables from './pages/Payables'
 import CashForecast from './pages/CashForecast'
 import Setup from './pages/Setup'
+import RevenueForecast from './pages/RevenueForecast'
 import { CompanyProvider, useCompany } from './hooks/useCompany'
 
 function AppRoutes() {
@@ -24,6 +25,7 @@ function AppRoutes() {
         <Route path="/receivables" element={<Receivables />} />
         <Route path="/payables" element={<Payables />} />
         <Route path="/forecast" element={<CashForecast />} />
+        <Route path="/revenue" element={<RevenueForecast />} />
         <Route path="/setup" element={<Setup />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
