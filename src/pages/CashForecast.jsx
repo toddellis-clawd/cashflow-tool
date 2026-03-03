@@ -263,6 +263,16 @@ export default function CashForecast() {
                   </tr>
                 </>
               )}
+
+              {/* Final ENDING CASH row at very bottom */}
+              <tr className="bg-[#0f172a] border-t-2 border-t-[#3b82f6]">
+                <td className="px-3 py-4 font-bold text-white text-base sticky left-0 bg-[#0f172a]">ENDING CASH AVAILABLE</td>
+                {forecast.map((w, i) => (
+                  <td key={i} className={`px-3 py-4 text-right font-mono font-bold text-base ${w.endingBalance >= 0 ? 'text-white' : 'text-[#ef4444]'} ${i > 0 && w.quarter !== forecast[i-1].quarter ? 'border-l-2 border-l-[#3b82f6]/30' : ''}`}>
+                    {formatCurrency(w.endingBalance)}
+                  </td>
+                ))}
+              </tr>
             </tbody>
           </table>
         </div>
